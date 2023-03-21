@@ -1,10 +1,6 @@
-import React from "react";
-import {
-  FieldErrors,
-  FieldValues,
-  Path,
-  UseFormRegister,
-} from "react-hook-form";
+import React from 'react';
+
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 interface TextFieldProps<T extends FieldValues> {
   register: UseFormRegister<T>;
@@ -24,17 +20,17 @@ const TextInput = <T extends FieldValues>({
   errorMessage,
 }: TextFieldProps<T>) => {
   return (
-    <div className="w-full h-12">
+    <div className='w-full h-12'>
       <input
-        {...register(name, { required: true })}
-        type={hidden ? "password" : "text"}
+        {...register(name)}
+        type={hidden ? 'password' : 'text'}
         placeholder={placeholder}
-        autoComplete="off"
-        className={`w-full bg-transparent placeholder:text-black border-b border-black py-2 focus:outline-none focus:placeholder:text-transparent ${
-          error && "border-red-500"
+        autoComplete='off'
+        className={`w-full bg-transparent placeholder:text-black border-b placeholder:text-lg sm:placeholder:text-sm lg:placeholder:text-base border-black py-2 focus:outline-none focus:placeholder:text-transparent ${
+          error && 'border-red-500'
         }`}
       />
-      {error && <p className="text-sm mt-2 text-red-500">{errorMessage}</p>}
+      {error && <p className='text-sm mt-2 text-red-500'>{errorMessage}</p>}
     </div>
   );
 };
