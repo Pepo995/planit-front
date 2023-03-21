@@ -14,7 +14,7 @@
   font-weight: 400;
 
   color: #000000;
-  background-color: #f5f5f5;
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -32,7 +32,13 @@ a:hover {
 }
 
 body {
-  font-family: "Poppins";
+  font-family: 'Poppins';
+}
+
+html,
+body,
+:root {
+  height: 100%;
 }
 
 .m-inline {
