@@ -3,10 +3,10 @@ import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
-import { login } from '../api/usersApi';
+import { login } from '../api/authenticationApi';
 import { Button } from '../components/Button';
 import TextInput from '../components/TextInput';
 import LeftLayout from '../layouts/LeftLayout';
@@ -30,13 +30,15 @@ const Login = () => {
     resolver: zodResolver(loginValidationSchema),
   });
 
+  const navigate = useNavigate();
+
   const { mutate: loginMutation, isLoading } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
       localStorage.setItem('token', data.data.token);
+      navigate('/products', { replace: true });
     },
   });
-
   return (
     <LeftLayout>
       <div className='w-[90%] sm:w-[77%] m-inline flex flex-col gap-8 lg:gap-16'>

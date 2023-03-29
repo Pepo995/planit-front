@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-const usersApi = axios.create({
-  baseURL: `http://localhost:4000/users`,
+const categoriesApi = axios.create({
+  baseURL: `http://localhost:4000/categories`,
 });
 
-export const getAuthenticatedUser = async () => {
-  const { data } = await usersApi.get('/currentUser');
+export const getCategories = async () => {
+  const { data } = await categoriesApi.get('/');
   return data;
 };
 
-usersApi.interceptors.request.use(
+categoriesApi.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
     if (token) {

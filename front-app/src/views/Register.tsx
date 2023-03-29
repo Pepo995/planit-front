@@ -6,7 +6,7 @@ import { useMutation } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
-import { createUser } from '../api/usersApi';
+import { createUser } from '../api/authenticationApi';
 import { Button } from '../components/Button';
 import TextInput from '../components/TextInput';
 import LeftLayout from '../layouts/LeftLayout';
@@ -20,6 +20,8 @@ const registerValidationSchema = z.object({
     .min(8, 'La contrasena debe tener al menos 8 caracteres')
     .max(20, 'La contrasena debe tener maximo 20 caracteres'),
   company: z.string(),
+  profileImage: z.string(),
+  position: z.string(),
 });
 export type RegisterValidationInterface = z.infer<typeof registerValidationSchema>;
 
@@ -85,6 +87,11 @@ const Register = () => {
           />
 
           <TextInput register={register} placeholder='Nombre de su empresa' name='company' />
+
+          <TextInput register={register} placeholder='Imagen de perfil' name='profileImage' />
+
+          <TextInput register={register} placeholder='Puesto en empresa' name='position' />
+
           <Button loading={isLoading} text='Loading...'>
             registrarse
           </Button>
