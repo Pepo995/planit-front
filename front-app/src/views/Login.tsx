@@ -2,13 +2,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LeftLayout from '../layouts/LeftLayout';
 import TextInput from '../components/TextInput';
-
 import { useMutation } from 'react-query';
 import { login } from '../api/usersApi';
 import { Button } from '../components/Button';
+import HelpComponent from '../components/HelpComponent';
 
 const loginValidationSchema = z.object({
   email: z.string().email('El email no es valido'),
@@ -30,15 +30,15 @@ const Login = () => {
     resolver: zodResolver(loginValidationSchema),
   });
 
+  const navigate = useNavigate();
+
   const { mutate: loginMutation, isLoading } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      console.log('User logged in!');
-      console.log(data.data.token);
       localStorage.setItem('token', data.data.token);
+      navigate('/products', { replace: true });
     },
   });
-
   return (
     <LeftLayout>
       <div className='w-[90%] sm:w-[77%] m-inline flex flex-col gap-8 lg:gap-16'>
@@ -52,7 +52,6 @@ const Login = () => {
         <form
           className='flex flex-col gap-6 lg:gap-8 '
           onSubmit={handleSubmit((values) => {
-            console.log(values); //call the register endpoint
             loginMutation(values);
             reset();
           })}
@@ -64,7 +63,6 @@ const Login = () => {
             error={!!errors.email}
             errorMessage={errors.email?.message}
           />
-
           <TextInput
             register={register}
             placeholder='Contraseña'
@@ -73,7 +71,6 @@ const Login = () => {
             error={!!errors.password}
             errorMessage={errors.password?.message}
           />
-
           <div className='flex text-left gap-4'>
             <input type='checkbox' id='informacion'></input>
             <label className='font-normal text-base sm:text-sm lg:text-base' id='informacion'>
@@ -93,6 +90,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <HelpComponent></HelpComponent>
     </LeftLayout>
   );
 };

@@ -5,10 +5,10 @@ import LeftLayout from '../layouts/LeftLayout';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-
 import { useMutation } from 'react-query';
 import { createUser } from '../api/usersApi';
 import { Button } from '../components/Button';
+import HelpComponent from '../components/HelpComponent';
 
 const registerValidationSchema = z.object({
   firstName: z.string(),
@@ -19,8 +19,9 @@ const registerValidationSchema = z.object({
     .min(8, 'La contrasena debe tener al menos 8 caracteres')
     .max(20, 'La contrasena debe tener maximo 20 caracteres'),
   company: z.string(),
+  profileImage: z.string(),
+  position: z.string(),
 });
-
 export type RegisterValidationInterface = z.infer<typeof registerValidationSchema>;
 
 const Register = () => {
@@ -58,14 +59,15 @@ const Register = () => {
         <form
           className='flex flex-col gap-4 '
           onSubmit={handleSubmit((values) => {
-            console.log(values);
             registerMutation(values);
             reset();
             navigate('/login', { replace: true });
           })}
         >
           <TextInput register={register} placeholder='Nombre' name='firstName' />
+
           <TextInput register={register} placeholder='Apellido' name='lastName' />
+
           <TextInput
             register={register}
             placeholder='Email'
@@ -73,6 +75,7 @@ const Register = () => {
             error={!!errors.email}
             errorMessage={errors.email?.message}
           />
+
           <TextInput
             register={register}
             placeholder='Contraseña'
@@ -82,11 +85,16 @@ const Register = () => {
             errorMessage={errors.password?.message}
           />
           <TextInput register={register} placeholder='Nombre de su empresa' name='company' />
+
+          <TextInput register={register} placeholder='Imagen de perfil' name='profileImage' />
+
+          <TextInput register={register} placeholder='Puesto en empresa' name='position' />
           <Button loading={isLoading} text='Loading...'>
             registrarse
           </Button>
         </form>
       </div>
+      <HelpComponent></HelpComponent>
     </LeftLayout>
   );
 };
