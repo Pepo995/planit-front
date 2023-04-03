@@ -151,6 +151,7 @@ const Products = () => {
               </select>
             </div>
           </div>
+
           <hr className='hidden md:flex border-[0.5px] border-black w-full m-inline mt-5'></hr>
           <div className='flex gap-5 mt-12 h-[700px]'>
             <InfiniteScroll

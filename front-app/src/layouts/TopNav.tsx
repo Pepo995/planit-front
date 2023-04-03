@@ -11,9 +11,9 @@ import SearchIcon from '../assets/svg/search_icon.svg';
 import Vector from '../assets/svg/vector.svg';
 
 interface NavProps {
-  textValue: string;
-  onChange: (event: any) => void;
-  onClick: () => void;
+  textValue?: string;
+  onChange?: (event: any) => void;
+  onClick?: () => void;
 }
 
 const TopNav = ({ textValue, onChange, onClick }: NavProps) => {

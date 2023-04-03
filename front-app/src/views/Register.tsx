@@ -91,10 +91,7 @@ const Register = () => {
           <TextInput register={register} placeholder='Imagen de perfil' name='profileImage' />
 
           <TextInput register={register} placeholder='Puesto en empresa' name='position' />
-
-          <Button loading={isLoading} text='Loading...'>
-            registrarse
-          </Button>
+          <Button>registrarse</Button>
         </form>
       </div>
     </LeftLayout>
