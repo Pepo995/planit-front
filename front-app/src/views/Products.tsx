@@ -8,6 +8,7 @@ import { getCategories } from '../api/categoriesApi';
 import InfiniteScroll from 'react-infinite-scroller';
 import SearchIcon from '../assets/svg/search_icon.svg';
 import Vector from '../assets/svg/vector.svg';
+import ProductCard from '../components/ProductCard';
 
 interface Product {
   id: number;
@@ -31,7 +32,7 @@ const Products = () => {
   const [queryCategories, setQueryCategories] = useState<null | number[]>(null);
   const [querySortBy, setQuerySortBy] = useState('');
   const [queryPage, setQueryPage] = useState(0);
-  const [querySize, setQuerySize] = useState(2);
+  const [querySize, setQuerySize] = useState(4);
   const [productList, setProductToList] = useState<Product[]>([]);
   const [hasMoreValue, setHasMore] = useState(true);
 
@@ -47,6 +48,7 @@ const Products = () => {
     ['params', filters],
     () => getProducts(filters),
   );
+
   const { data: dataCategories } = useQuery<Category[]>(['params'], () => getCategories());
 
   const totalResults = data?.totalCount;
@@ -113,6 +115,7 @@ const Products = () => {
           <img src={Vector} className='w-8 h-8 absolute right-[1%] translate-y-[7%]'></img>
         </div>
       </TopNav>
+
       <div className='bg-gray-100 '>
         <div className='w-[80%] m-inline flex flex-col'>
           <div className='flex flex-col mt-10 md:mt-20 gap-1'>
@@ -158,6 +161,7 @@ const Products = () => {
               </select>
             </div>
           </div>
+
           <hr className='hidden md:flex border-[0.5px] border-black w-full m-inline mt-5'></hr>
           <div className='flex gap-5 mt-12 overflow-auto h-[700px]'>
             <InfiniteScroll
@@ -167,13 +171,11 @@ const Products = () => {
               useWindow={true}
               className='flex flex-col md:flex-row gap-5'
             >
-              {productList.map((product) => (
-                <div className='flex flex-col' key={product.id}>
-                  <img src={product.image}></img>
-                  <p className='text-lg font-medium'>{product.name}</p>
-                  <p className='text-transparent-bgclip text-lg font-medium'>${product.price}</p>
-                </div>
-              ))}
+              <div className='md:grid md:grid-cols-4 md:gap-4'>
+                {productList.map((product) => (
+                  <ProductCard {...product}></ProductCard>
+                ))}
+              </div>
             </InfiniteScroll>
           </div>
         </div>

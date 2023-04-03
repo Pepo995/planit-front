@@ -17,8 +17,6 @@ const TopNav = ({ children }: NavProps) => {
     const [, payload] = token.split('.');
     const decodedToken = JSON.parse(atob(payload));
     id = decodedToken.id;
-    console.log('USERID:');
-    console.log(id);
   }
 
   const { data } = useQuery(['params', id], () => getUserById(id));
