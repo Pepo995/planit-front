@@ -55,18 +55,20 @@ const TopNav = ({ children }: NavProps) => {
             <div className='hidden md:flex gap-4'>
               <img src={BellIcon} className='w-8 h-6'></img>
             </div>
-            <div className='hidden md:flex flex-col'>
-              <div className=' flex gap-2 font-medium text-lg'>
-                <p>{data?.firstName}</p>
-                <p>{data?.lastName}</p>
-              </div>
-              <div className='flex gap-1 items-center'>
-                <p className='font-normal text-base text-gray-400'>{data?.position}</p>
-                <div className='flex items-center gap-1'>
-                  <img src={DropDown} className='w-3 h-3'></img>
+            <Link to='/personalInformation'>
+              <div className='hidden md:flex flex-col'>
+                <div className=' flex gap-2 font-medium text-lg'>
+                  <p>{data?.firstName}</p>
+                  <p>{data?.lastName}</p>
+                </div>
+                <div className='flex gap-1 items-center'>
+                  <p className='font-normal text-base text-gray-400'>{data?.position}</p>
+                  <div className='flex items-center gap-1'>
+                    <img src={DropDown} className='w-3 h-3'></img>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
