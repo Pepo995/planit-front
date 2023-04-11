@@ -9,7 +9,7 @@ import LogoColor from '../assets/svg/logo_and_letters.svg';
 const Footer = () => {
   return (
     <div className='w-full m-inline'>
-      <div className='hidden md:flex flex-col mt-5 w-full m-inline text-gray-400  gap-0-5 mb-1-5'>
+      <div className='hidden md:flex flex-col mt-5 w-full m-inline text-gray-400  gap-0-5 mb-3'>
         <hr className='border-t-line4'></hr>
         <div className='flex justify-between items-center text-base font-light'>
           <p>Copyright ©2021</p>

@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Link, useNavigate } from 'react-router-dom';
 import LeftLayout from '../layouts/LeftLayout';
-import TextInput from '../components/TextInput';
+import { TextInput } from '../components/TextInput';
 import { useMutation } from 'react-query';
 import { login } from '../api/usersApi';
 import { Button } from '../components/Button';

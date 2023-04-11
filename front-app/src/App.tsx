@@ -4,6 +4,8 @@ import Login from './views/Login';
 import Register from './views/Register';
 import Products from './views/Products';
 import Product from './views/Product';
+import PersonalInformation from './views/PersonalInformation';
+import SuccessfullyUpdated from './views/SuccessfullyUpdated';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route index element={<Products />} />
         <Route path=':id' element={<Product />} />
       </Route>
+      <Route path='/personalInformation' element={<PersonalInformation />} />
+      <Route path='/SuccessfullyUpdated' element={<SuccessfullyUpdated />} />
     </Routes>
   );
 }

@@ -95,6 +95,7 @@ const Products = () => {
   };
 
   if (isLoading) return <div>Loading...</div>;
+
   return (
     <section className='flex flex-col gap-16 h-full w-full'>
       <TopNav>

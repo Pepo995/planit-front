@@ -4,13 +4,14 @@ import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 interface TextFieldProps<T extends FieldValues> {
   register: UseFormRegister<T>;
   name: Path<T>;
-  placeholder: string;
+  placeholder?: string;
   hidden?: boolean;
   error?: boolean;
   errorMessage?: string;
+  defaultValue?: string;
 }
 
-const TextInput = <T extends FieldValues>({
+export const TextInput = <T extends FieldValues>({
   name,
   register,
   placeholder,
@@ -34,4 +35,26 @@ const TextInput = <T extends FieldValues>({
   );
 };
 
-export default TextInput;
+export const TextInput2 = <T extends FieldValues>({
+  name,
+  register,
+  hidden = false,
+  error,
+  errorMessage,
+  defaultValue,
+}: TextFieldProps<T>) => {
+  return (
+    <div className='w-full h-12'>
+      <input
+        defaultValue={defaultValue}
+        {...register(name)}
+        type={hidden ? 'password' : 'text'}
+        autoComplete='off'
+        className={`w-full bg-transparent border-b text-base font-medium text-gray-500 border-gray-500 py-2 focus:outline-none ${
+          error && 'border-red-500'
+        }`}
+      />
+      {error && <p className='text-sm mt-2 text-red-500'>{errorMessage}</p>}
+    </div>
+  );
+};
