@@ -101,7 +101,9 @@ const Product = () => {
                 </span>
               </div>
               <div className='flex w-[65%] sm:hidden'>
-                <Button>comprar ahora</Button>
+                <Link to={`/products/${id}/checkout`} state={{ total: totalPrice * amount }} className='w-full'>
+                  <Button>comprar ahora</Button>
+                </Link>
               </div>
             </div>
 
@@ -146,7 +148,13 @@ const Product = () => {
               </div>
             </div>
             <div className='hidden sm:flex flex-col gap-4 items-center'>
-              <Button>comprar</Button>
+              <Link
+                to={`/products/${id}/checkout`}
+                state={{ total: totalPrice * amount, amount: amount }}
+                className='w-full'
+              >
+                <Button>comprar</Button>
+              </Link>
               <p className='text-transparent-bgclip cursor-pointer'>Imprimir presupuesto</p>
             </div>
           </div>
