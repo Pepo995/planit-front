@@ -6,6 +6,7 @@ interface TextFieldProps<T extends FieldValues> {
   name: Path<T>;
   placeholder?: string;
   hidden?: boolean;
+  type?: string;
   error?: boolean;
   errorMessage?: string;
   defaultValue?: string;
@@ -49,6 +50,32 @@ export const TextInput2 = <T extends FieldValues>({
         defaultValue={defaultValue}
         {...register(name)}
         type={hidden ? 'password' : 'text'}
+        autoComplete='off'
+        className={`w-full bg-transparent border-b text-base font-medium text-gray-500 border-gray-500 py-2 focus:outline-none ${
+          error && 'border-red-500'
+        }`}
+      />
+      {error && <p className='text-sm mt-2 text-red-500'>{errorMessage}</p>}
+    </div>
+  );
+};
+
+export const TextInput3 = <T extends FieldValues>({
+  name,
+  register,
+  error,
+  errorMessage,
+  defaultValue,
+  placeholder,
+}: TextFieldProps<T>) => {
+  return (
+    <div className='w-full h-12'>
+      <input
+        // {...(type == 'number' ? { ...register(name, { setValueAs: (v) => parseInt(v) }) } :
+        {...register(name)}
+        // )}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
         autoComplete='off'
         className={`w-full bg-transparent border-b text-base font-medium text-gray-500 border-gray-500 py-2 focus:outline-none ${
           error && 'border-red-500'
