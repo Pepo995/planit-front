@@ -10,6 +10,7 @@ import LogoP from '../assets/svg/logo_p.svg';
 import PlanItLogo from '../assets/svg/planit_logo.svg';
 import Point from '../assets/svg/point.svg';
 import TwitterLogo from '../assets/svg/twitter_gray.svg';
+import HelpComponent from '../components/HelpComponent';
 
 interface LeftLayoutProps {
   children: React.ReactNode;
@@ -86,6 +87,7 @@ const LeftLayout = (props: LeftLayoutProps) => {
           </div>
         </div>
       </div>
+      <HelpComponent></HelpComponent>
     </section>
   );
 };
