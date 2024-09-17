@@ -39,6 +39,7 @@ const Login = () => {
       navigate('/products', { replace: true });
     },
   });
+
   return (
     <LeftLayout>
       <div className='w-[90%] sm:w-[77%] m-inline flex flex-col gap-8 lg:gap-16'>
@@ -79,9 +80,7 @@ const Login = () => {
               Recordar mi información
             </label>
           </div>
-          <Button loading={isLoading} text='Loading...'>
-            iniciar sesion
-          </Button>
+          <Button>iniciar sesion</Button>
         </form>
         <div className='text-sm lg:text-base flex flex-col gap-4'>
           <div className='flex flex-col text-center gap-2'>

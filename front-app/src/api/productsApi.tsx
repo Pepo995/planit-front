@@ -19,6 +19,11 @@ export const getProducts = async (params: GetProductsParams) => {
   return data;
 };
 
+export const getProductById = async (id: any) => {
+  const { data } = await productsApi.get(`/${id}`);
+  return data;
+};
+
 productsApi.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
